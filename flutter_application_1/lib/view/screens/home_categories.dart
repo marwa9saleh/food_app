@@ -6,47 +6,49 @@ import 'package:get/get.dart';
 
 class HomeCategories extends StatelessWidget {
   HomeCategories({super.key});
- final controller = Get.find<DataController>();
- 
+  final controller = Get.find<DataController>();
+
   @override
   Widget build(BuildContext context) {
     // return Obx(() {
-        return
-    // return Obx(()  {
-    //   if (controller.isLoading.value) {
-    //     return const Center(
-    //       child: CircularProgressIndicator(
-       
-    //       ),
-    //     );
-    //   } else {
-      
-    SizedBox(
+    return
+        // return Obx(()  {
+        //   if (controller.isLoading.value) {
+        //     return const Center(
+        //       child: CircularProgressIndicator(
+
+        //       ),
+        //     );
+        //   } else {
+
+        SizedBox(
       height: 80,
       child: ListView.builder(
         shrinkWrap: true,
-        
-              // itemCount: controller.foodList.length,
-              itemCount:controller.food.length,
-              itemBuilder: (context, i) {
-                 final category = controller.food[i];
-       return    GestureDetector(
-    onTap: () {
-            
-                Get.to(
-                  () => FoodDetailsScreen(
-                    categoryName: category['name'],
-                    menu: category['menu'],
-                  ),
-                );
-              },child: 
-      Categories(image:category['im'], title: category['name'], textColor:Colors.black,),);
-      
-      },
-    
-      scrollDirection: Axis.horizontal,
+
+        // itemCount: controller.foodList.length,
+        itemCount: controller.food.length,
+        itemBuilder: (context, i) {
+          final category = controller.food[i];
+          return GestureDetector(
+            onTap: () {
+              Get.to(
+                () => FoodDetailsScreen(
+                  categoryName: category['name'],
+                  menu: category['menu'],
+                ),
+              );
+            },
+            child: Categories(
+              image: category['im'],
+              title: category['name'],
+              textColor: Colors.black,
+            ),
+          );
+        },
+
+        scrollDirection: Axis.horizontal,
       ),
     );
-    
   }
 }

@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
 
+
+
 import 'package:flutter_application_1/Utils/theme.dart';
 
 class AuthTextFormField extends StatelessWidget {
-  final TextEditingController controller;
+  // final TextEditingController controller;
   final bool obscureText;
-  final Function validator;
+  final Function onChanged;
   final Widget prefixIcon;
   final Widget suffixIcon;
   final String hintText;
   const AuthTextFormField({
-    required this.controller,
+    // required this.controller,
     required this.obscureText,
-    required this.validator,
+    required this.onChanged,
     required this.prefixIcon,
     required this.suffixIcon,
     required this.hintText,
-    super.key,
+    super.key, required TextInputType keyboardType,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
+    
       obscureText: obscureText,
       cursorColor: Colors.black,
-      keyboardType: TextInputType.text,
-      validator: (value) {
-        return validator(value);
+ 
+      onChanged: (value) {
+        return onChanged(value);
       },
       decoration: InputDecoration(
           labelText: hintText,
-          focusedBorder: const UnderlineInputBorder(
+          focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: mainColor),
           ),
           enabledBorder: const UnderlineInputBorder(

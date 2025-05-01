@@ -2,18 +2,17 @@ import 'package:flutter_application_1/View/Screens/Authentication/signup.dart';
 import 'package:flutter_application_1/View/Screens/Authentication/login.dart';
 
 import 'package:flutter_application_1/View/Screens/favourite.dart';
-import 'package:flutter_application_1/View/Screens/setting.dart';
+
 import 'package:flutter_application_1/View/Screens/splash.dart';
 import 'package:flutter_application_1/logic/binding/auth_binding.dart';
 import 'package:flutter_application_1/logic/binding/data_binding.dart';
 
-
 import 'package:flutter_application_1/logic/binding/main_binding.dart';
+import 'package:flutter_application_1/view/screens/Authentication/forgot_password.dart';
+import 'package:flutter_application_1/view/screens/account_screen.dart';
 import 'package:flutter_application_1/view/screens/bootom_navigationbar.dart';
 
-
 import 'package:flutter_application_1/view/screens/details_cart.dart';
-
 
 import 'package:flutter_application_1/view/screens/pay.dart';
 
@@ -44,8 +43,7 @@ class AppRoutes {
     ),
     GetPage(
       name: Routes.home,
-      page: () => HomeScreen(),
-  
+      page: () => const HomeScreen(),
     ),
     GetPage(
       name: Routes.splash,
@@ -57,56 +55,54 @@ class AppRoutes {
     ),
     GetPage(
       name: Routes.set,
-      page: () =>  SettingsScreen(),
-       binding: AuthBinding(),
+      page: () => AccountScreen(),
+      binding: AuthBinding(),
+
+      // MainBinding(),
     ),
+    GetPage(name: Routes.nav, page: () => Navigation(), bindings: [
+      DataBinding(),
+      MainBinding(),
+    ]),
+
     GetPage(
-      name: Routes.nav,
-      page: () => Navigation(),
-   
-     bindings: [DataBinding(), MainBinding()
-     ]
-     ,
-    ),
-  
-     GetPage(
       name: Routes.decart,
-      page: () =>DetCart(),
-        binding: DataBinding(), 
-     
-     
+      page: () => DetCart(),
+      // binding: DataBinding(),
     ),
-      //  GetPage(
+    //  GetPage(
     //   name: Routes.det,
     //   page: () => Details(),
-     
+
     // ),
-   
-     GetPage(
+
+    GetPage(
       name: Routes.pay,
-      page: () =>const PaymentPage(),
-     
+      page: () => const PaymentPage(),
+    ),
+    GetPage(
+      name: Routes.forgot,
+      page: () => ForgotPassword(),
     ),
     //  GetPage(
     //   name: Routes.food_det,
     //   page: () =>FoodDetailsScreen(),
-     
+
     // ),
   ];
 }
 
-
 class Routes {
   static const loginScreen = '/LoginScreen';
   static const signUpScreen = '/SignupScreen';
-  static const home ='/HomeScreen';
+  static const home = '/HomeScreen';
   static const splash = '/SplashScreen';
-  static const fav ='/FavoritesScreen';
-  static const set ='/SettingsScreen';
-  static const nav ='/Navigation';
+  static const fav = '/FavoritesScreen';
+  static const set = '/AccountScreen';
+  static const nav = '/Navigation';
   // static const det ='/Details';
-  static const decart ='/DetCart';
-  static const pay ='/PaymentPage';
+  static const decart = '/DetCart';
+  static const pay = '/PaymentPage';
+  static const forgot = '/ForgotPassword';
   // static const food_det='/FoodDetailsScreen';
-  
 }

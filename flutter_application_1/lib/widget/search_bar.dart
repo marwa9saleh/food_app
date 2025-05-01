@@ -4,12 +4,14 @@ import 'package:flutter_application_1/utils/theme.dart';
 import 'package:get/get.dart';
 
 class SearchWidget extends StatelessWidget {
-    final DataController controller = Get.find<DataController>();
-SearchWidget({super.key, });
+  final DataController controller = Get.find<DataController>();
+  SearchWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-     return GetBuilder<DataController>(
+    return GetBuilder<DataController>(
       builder: (_) => TextField(
         controller: controller.searchTextController,
         cursorColor: Get.isDarkMode ? Colors.white : Colors.black,
@@ -35,7 +37,7 @@ SearchWidget({super.key, });
                   ),
                 )
               : null,
-          hintText: "Search with name",
+          hintText: "Search with name".tr,
           hintStyle: TextStyle(
             color: Get.isDarkMode ? Colors.white : Colors.black,
             fontSize: 16,
@@ -47,7 +49,7 @@ SearchWidget({super.key, });
             borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(color: five),
+            borderSide: BorderSide(color: five),
             borderRadius: BorderRadius.circular(10),
           ),
           errorBorder: OutlineInputBorder(
@@ -61,39 +63,38 @@ SearchWidget({super.key, });
         ),
       ),
     );
-  //   return InkWell(
-  //     onTap: ontap,
-  //     child: 
-   
-  //   Container(
-  //     width: MediaQuery.sizeOf(context).width * 0.80,
-  //     decoration: ShapeDecoration(
-  //       color: Colors.white,
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(12),
-  //       ),
-  //       shadows: const [
-  //         BoxShadow(
-  //           color: Color(0x26000000),
-  //           blurRadius: 19,
-  //           offset: Offset(0, 4),
-  //           spreadRadius: 0,
-  //         )
-  //       ],
-  //     ),child: 
-  //        const Padding(
-  //       padding:EdgeInsets.all(16.0),
-  //       child: 
-  //      Row(
-  //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [Text('search'),
-          
-  //         Icon(Icons.search),
-          
-  //         ],
-  //       ),
-  //     ),),
-  //   );
+    //   return InkWell(
+    //     onTap: ontap,
+    //     child:
 
+    //   Container(
+    //     width: MediaQuery.sizeOf(context).width * 0.80,
+    //     decoration: ShapeDecoration(
+    //       color: Colors.white,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(12),
+    //       ),
+    //       shadows: const [
+    //         BoxShadow(
+    //           color: Color(0x26000000),
+    //           blurRadius: 19,
+    //           offset: Offset(0, 4),
+    //           spreadRadius: 0,
+    //         )
+    //       ],
+    //     ),child:
+    //        const Padding(
+    //       padding:EdgeInsets.all(16.0),
+    //       child:
+    //      Row(
+    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //         children: [Text('search'),
+
+    //         Icon(Icons.search),
+
+    //         ],
+    //       ),
+    //     ),),
+    //   );
   }
 }
