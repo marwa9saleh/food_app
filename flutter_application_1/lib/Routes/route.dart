@@ -8,8 +8,8 @@ import 'package:flutter_application_1/logic/binding/auth_binding.dart';
 import 'package:flutter_application_1/logic/binding/data_binding.dart';
 
 import 'package:flutter_application_1/logic/binding/main_binding.dart';
-import 'package:flutter_application_1/view/screens/Authentication/forgot_password.dart';
 import 'package:flutter_application_1/view/screens/account_screen.dart';
+
 import 'package:flutter_application_1/view/screens/bootom_navigationbar.dart';
 
 import 'package:flutter_application_1/view/screens/details_cart.dart';
@@ -43,7 +43,7 @@ class AppRoutes {
     ),
     GetPage(
       name: Routes.home,
-      page: () => const HomeScreen(),
+      page: () =>  HomeScreen(),
     ),
     GetPage(
       name: Routes.splash,
@@ -80,10 +80,10 @@ class AppRoutes {
       name: Routes.pay,
       page: () => const PaymentPage(),
     ),
-    GetPage(
-      name: Routes.forgot,
-      page: () => ForgotPassword(),
-    ),
+    // GetPage(
+    //   name: Routes.forgot,
+    //   page: () => ForgotPassword(),
+    // ),
     //  GetPage(
     //   name: Routes.food_det,
     //   page: () =>FoodDetailsScreen(),

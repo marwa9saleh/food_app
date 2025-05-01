@@ -1,15 +1,9 @@
-
-
 import 'package:flutter_application_1/Utils/theme.dart';
 import 'package:flutter_application_1/logic/controllers/auth_controller.dart';
-
-
 import 'package:flutter_application_1/routes/route.dart';
 import 'package:flutter_application_1/widget/text_field.dart';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/svg.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -51,7 +45,7 @@ class SignupScreen extends StatelessWidget {
                           ? FileImage(controller.pickedImage!)
                           : null,
                       child: controller.pickedImage == null
-                          ? Icon(Icons.camera_alt, size: 40)
+                          ? const Icon(Icons.camera_alt, size: 40)
                           : null,
                     ),
                   ),
@@ -116,7 +110,7 @@ class SignupScreen extends StatelessWidget {
                         prefixIcon: const Icon(Icons.email, size: 30),
                         suffixIcon: const Text(""),
                         hintText: 'Email', keyboardType: TextInputType.emailAddress,
-,
+
                       ),
                     // }),
                     const SizedBox(
@@ -152,7 +146,7 @@ class SignupScreen extends StatelessWidget {
                                 ),
                         ),
                         obscureText: controller.isVisibilty ? false : true,
-                        hintText: 'Password',  keyboardType:  TextInputType.number,
+                        hintText: 'Password',  keyboardType:  TextInputType.text,
                       ),
 
  
@@ -165,7 +159,7 @@ class SignupScreen extends StatelessWidget {
                     //   return 
 
                          controller.isLoading.value
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : 
                       ElevatedButton(
                         onPressed: () { controller.register;
@@ -190,8 +184,9 @@ class SignupScreen extends StatelessWidget {
                       ),
                     // }),
                     const SizedBox(height: 20),
-                    GetBuilder<AuthController>(builder: (_) {
-                      return GestureDetector(
+                    // GetBuilder<AuthController>(builder: (_) {
+                    //   return
+                       GestureDetector(
                         onTap: () {
                           Get.offNamed(Routes.loginScreen);
                         },
@@ -199,8 +194,8 @@ class SignupScreen extends StatelessWidget {
                           'Already have an Account? Login',
                           style: TextStyle(color: Colors.black),
                         ),
-                      );
-                    }),
+                      ),
+                    // }),
                   ],
                 ),
               ),

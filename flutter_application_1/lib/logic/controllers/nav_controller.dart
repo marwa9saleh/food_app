@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/view/screens/account_screen.dart';
+
 import 'package:flutter_application_1/view/screens/favourite.dart';
 import 'package:flutter_application_1/view/screens/home.dart';
 
@@ -12,7 +12,7 @@ class NavController extends GetxController
   final tabs = [
     HomeScreen(),
     FavoriteScreen(),
-    AccountScreen(),
+    // AccountScreen(),
     // CurvedAppBar(),
   ].obs;
 

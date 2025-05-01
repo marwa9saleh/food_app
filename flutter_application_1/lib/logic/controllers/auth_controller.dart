@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter_application_1/Routes/route.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -166,7 +167,7 @@ String? validateName(String value) {
         case 200:
           Get.snackbar("نجاح", "تم تسجيل الدخول");
           // يمكن حفظ التوكن هنا مثلاً body['token']
-             authBox.write("auth",  body['token']);
+             authBox.write("token",  body['token']);
           break;
 
         case 400:
@@ -193,7 +194,49 @@ String? validateName(String value) {
       isLoading.value = false;
       Get.snackbar("خطأ", "فشل الاتصال بالخادم");
   }
-    }}
+
+    }
+Future<void> logout() async {
+    final token = authBox.read('token');
+
+    if (token == null) {
+      Get.snackbar('خطأ', 'المستخدم غير مسجل دخول');
+      return;
+    }
+
+    try {
+      final response = await http.post(
+        Uri.parse('https://student.valuxapps.com/api/logout'),
+        headers: {
+          'lang': 'ar',
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        },
+        body: jsonEncode({
+          'fcm_token': '', // إذا كنتِ لا تستخدمين FCM يمكنك تركه فارغًا أو تجاهله
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // حذف البيانات من التخزين
+        await authBox.remove('token');
+
+        Get.snackbar('نجاح', 'تم تسجيل الخروج بنجاح');
+        
+        // الانتقال إلى صفحة تسجيل الدخول
+          Get.offNamed(Routes.loginScreen); // تأكدي من أن لديك Route معرف باسم /login
+      } else {
+        Get.snackbar('خطأ', 'فشل تسجيل الخروج: ${response.body}');
+      }
+    } catch (e) {
+      Get.snackbar('خطأ', 'مشكلة في الاتصال بالسيرفر');
+    }
+
+
+
+}
+
+    }
 // Firebase Authentcation
 
 //   void signUpUsingFirebase({

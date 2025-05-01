@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/co.dart';
+import 'package:flutter_application_1/logic/controllers/auth_controller.dart';
 
 import 'package:flutter_application_1/utils/theme.dart';
 
@@ -11,8 +12,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+   HomeScreen({super.key});
+final controllers = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -101,6 +102,13 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                     ),
+                    ElevatedButton(
+  onPressed: () {
+   controllers.logout();
+  },
+  child: Text('تسجيل الخروج'),
+)
+
                   ],
                 ),
               ),

@@ -188,7 +188,7 @@ Container(
                         backgroundColor: Colors.red,
                       ),
                       onPressed: () {
-                        controllers.signOutFromApp();
+                        // controllers.logout();
                         Get.back();
                       },
                       child: const Text('LogOut',

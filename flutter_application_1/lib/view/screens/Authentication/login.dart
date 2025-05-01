@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-
-
 import 'package:flutter_application_1/Utils/theme.dart';
 import 'package:flutter_application_1/logic/controllers/auth_controller.dart';
-
-
-
 import 'package:flutter_application_1/routes/route.dart';
-
 import 'package:flutter_application_1/widget/text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -103,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                     // GetBuilder<AuthController>(builder: (_) {
                       // return 
                         controller.isLoading.value
-                ? Center(child: CircularProgressIndicator())
+                ? Center(child:  CircularProgressIndicator())
                 : 
                       ElevatedButton(
                         onPressed: () { controller.login;
