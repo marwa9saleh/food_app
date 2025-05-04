@@ -39,7 +39,6 @@ class LoginScreen extends StatelessWidget {
                        AuthTextFormField(
                          onChanged: (value) => controller.email.value = value,
   
-              keyboardType: TextInputType.emailAddress,
 
                         // controller: emailController!,
                         obscureText: false,
@@ -88,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         obscureText: controller.isVisibilty ? false : true,
                         hintText: 'Password', onChanged:  (val) => controller.password.value = val,
- keyboardType:  TextInputType.text,
+ 
                       ),
                     
                     const SizedBox(
@@ -97,10 +96,10 @@ class LoginScreen extends StatelessWidget {
                     // GetBuilder<AuthController>(builder: (_) {
                       // return 
                         controller.isLoading.value
-                ? Center(child:  CircularProgressIndicator())
+                ? const Center(child:  CircularProgressIndicator())
                 : 
                       ElevatedButton(
-                        onPressed: () { controller.login;
+                        onPressed: () { controller.login();
                           // if (fromKey.currentState!.validate()) {
                           //   String? email = emailController!.text.trim();
                           //   String? password = passwordController!.text;

@@ -71,7 +71,7 @@ class SignupScreen extends StatelessWidget {
                             size: 30,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'User Name', keyboardType: TextInputType.text, 
+                          hintText: 'User Name', 
                         ),
 
 
@@ -91,7 +91,7 @@ class SignupScreen extends StatelessWidget {
                             size: 30,
                           ),
                           suffixIcon: const Text(""),
-                          hintText: 'Phone', keyboardType: TextInputType.phone, 
+                          hintText: 'Phone'
                         ),
                     //   },
                     // ),
@@ -109,7 +109,7 @@ class SignupScreen extends StatelessWidget {
                         // },
                         prefixIcon: const Icon(Icons.email, size: 30),
                         suffixIcon: const Text(""),
-                        hintText: 'Email', keyboardType: TextInputType.emailAddress,
+                        hintText: 'Email',
 
                       ),
                     // }),
@@ -146,7 +146,7 @@ class SignupScreen extends StatelessWidget {
                                 ),
                         ),
                         obscureText: controller.isVisibilty ? false : true,
-                        hintText: 'Password',  keyboardType:  TextInputType.text,
+                        hintText: 'Password',
                       ),
 
  
@@ -162,7 +162,7 @@ class SignupScreen extends StatelessWidget {
                 ? const Center(child: CircularProgressIndicator())
                 : 
                       ElevatedButton(
-                        onPressed: () { controller.register;
+                        onPressed: () { controller.register();
                           // if (fromKey.currentState!.validate()) {
                           //   String name = _nameController.text.trim();
                           //   String email = _emailController.text.trim();

@@ -72,57 +72,121 @@ String? validateName(String value) {
       update();
     }
   }
+Future<void> register() async {
+  String? emailError = validateEmail(email.value);
+  String? passwordError = validatePassword(password.value);
+  String? phoneError = validatePhone(phone.value);
+  String? nameError = validateName(name.value);
 
-  Future<void> register() async {
-       String? emailError = validateEmail(email.value);
-    String? passwordError = validatePassword(password.value);
-       String? phoneError = validatePhone(phone.value);
-    String? nameError = validateName(name.value);
- if (emailError != null || passwordError != null) {
-      Get.snackbar("خطأ", "${emailError ?? ''}\n${passwordError ?? ''}");
-      return;
-    }
-
-    if (emailError != null || passwordError != null || phoneError != null || nameError  != null || pickedImage == null) {
-      Get.snackbar('خطأ', "${emailError ?? ''}\n${passwordError ?? ''} \n${phoneError ?? ''} \n${nameError ?? ''} يرجى اختيار صورة");
-      return;
-    }
-
-    isLoading.value = true;
-
-    try {
-      var request = http.MultipartRequest('POST', Uri.parse('https://student.valuxapps.com/api/register'));
-
-      request.headers.addAll({
-        'lang': 'ar',
-        'Content-Type': 'application/json',
-      });
-
-      request.fields['name'] = name.value;
-      request.fields['phone'] = phone.value;
-      request.fields['email'] = email.value;
-      request.fields['password'] = password.value;
-
-      request.files.add(await http.MultipartFile.fromPath('image', pickedImage!.path));
-
-      var streamedResponse = await request.send();
-      var response = await http.Response.fromStream(streamedResponse);
-
-      isLoading.value = false;
-
-      if (response.statusCode == 200) {
-        Get.snackbar('نجاح', 'تم تسجيل الحساب بنجاح');
-        // Get.off(ProfilePage()); 
-        // انتقال لصفحة الملف الشخصي مثلا
-      } else {
-        var body = jsonDecode(response.body);
-        Get.snackbar('خطأ', body['message'] ?? 'حدث خطأ');
-      }
-    } catch (e) {
-      isLoading.value = false;
-      Get.snackbar('خطأ', 'فشل الاتصال بالخادم');
-    }
+  if (emailError != null || passwordError != null || phoneError != null || nameError != null) {
+    Get.snackbar('خطأ', "${emailError ?? ''}\n${passwordError ?? ''}\n${phoneError ?? ''}\n${nameError ?? ''}");
+    return;
   }
+
+  isLoading.value = true;
+
+  try {
+ final url = Uri.parse( 'https://student.valuxapps.com/api/register');
+print('////////////////URL used///////////////: $url');
+final response = await http.post(
+  url,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36',
+    'lang': 'ar',
+  },
+  body: jsonEncode({
+    'name': name.value,
+    'phone': phone.value,
+    'email': email.value,
+    'password': password.value,
+    'fcm_token': '',
+  }),
+);
+
+print('Status Code: ${response.statusCode}');
+print('Response Body: ${response.body}');
+
+
+
+
+    isLoading.value = false;
+
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      if (data['status'] == true) {
+        Get.snackbar('نجاح', data['message'] ?? 'تم التسجيل');
+        Get.offNamed(Routes.home);
+      } else {
+        Get.snackbar('خطأ', data['message'] ?? 'حدث خطأ');
+      }
+    } else {
+      var body = jsonDecode(response.body);
+      Get.snackbar('خطأ', body['message'] ?? 'فشل في عملية التسجيل');
+    }
+  } catch (e) {
+    isLoading.value = false;
+    print('$e///////////////////////');
+    Get.snackbar('خطأ', 'فشل الاتصال بالخادم\n$e',duration:Duration(seconds:10));
+  }
+}
+
+//   Future<void> register() async {
+//        String? emailError = validateEmail(email.value);
+//     String? passwordError = validatePassword(password.value);
+//        String? phoneError = validatePhone(phone.value);
+//     String? nameError = validateName(name.value);
+// //  if (emailError != null || passwordError != null) {
+// //       Get.snackbar("خطأ", "${emailError ?? ''}\n${passwordError ?? ''}");
+// //       return;
+// //     }
+
+//     if (emailError != null || passwordError != null || phoneError != null || nameError != null 
+//     // ||
+//     //  pickedImage == null
+//      ) {
+//       Get.snackbar('خطأ', "${emailError ?? ''}\n${passwordError ?? ''} \n${phoneError ?? ''} \n${nameError ?? ''} ");
+//       return;
+//     }
+
+//     isLoading.value = true;
+
+//     try {
+//       var request = http.MultipartRequest('POST', Uri.parse('https://student.valuxapps.com/api/register'));
+
+//       request.headers.addAll({
+//         'lang': 'ar',
+//         // 'Content-Type': 'application/json',
+//       });
+
+//       request.fields['name'] = name.value;
+//       request.fields['phone'] = phone.value;
+//       request.fields['email'] = email.value;
+//       request.fields['password'] = password.value;
+
+//       request.files.add(await http.MultipartFile.fromPath('image', pickedImage!.path));
+
+//       var streamedResponse = await request.send();
+//       var response = await http.Response.fromStream(streamedResponse);
+
+//       isLoading.value = false;
+
+//       if (response.statusCode == 200) {
+//         Get.snackbar('نجاح', 'تم تسجيل الحساب بنجاح');
+//      Get.offNamed(Routes.home);
+//         // انتقال لصفحة الملف الشخصي مثلا
+//       } else {
+//         var body = jsonDecode(response.body);
+//         Get.snackbar('خطأ', body['message'] ?? 'حدث خطأ');
+//       }
+//     } catch (e) {
+//       isLoading.value = false;
+//       Get.snackbar('خطأ', 'فشل الاتصال بالخادم');
+//     }
+//   }
 
 
 
@@ -167,6 +231,7 @@ String? validateName(String value) {
         case 200:
           Get.snackbar("نجاح", "تم تسجيل الدخول");
           // يمكن حفظ التوكن هنا مثلاً body['token']
+
              authBox.write("token",  body['token']);
           break;
 

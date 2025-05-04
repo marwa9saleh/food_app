@@ -18,7 +18,9 @@ class AuthTextFormField extends StatelessWidget {
     required this.prefixIcon,
     required this.suffixIcon,
     required this.hintText,
-    super.key, required TextInputType keyboardType,
+      // required TextInputType keyboardType,
+    super.key,
+   
   });
 
   @override
